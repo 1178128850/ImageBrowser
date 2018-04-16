@@ -1,0 +1,12 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="px500">500px</dimen>
+    <dimen name="px50">50px</dimen>
+    <dimen name="px2">2px</dimen>
+    <dimen name="px25">25px</dimen>
+    <dimen name="px200">200px</dimen>
+    <dimen name="px140">140px</dimen>
+    <dimen name="px80">80px</dimen>
+    <dimen name="px10">10px</dimen>
+    <dimen name="px15">15px</dimen>
+</resources>

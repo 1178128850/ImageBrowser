@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pp_bk"
+    android:gravity="center_horizontal"
+    android:paddingTop="@dimen/px2"
+    android:paddingBottom="15px"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_time1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/px15"
+        android:gravity="center"
+        android:background="@drawable/button_pp_time"
+        android:textColor="@color/textcolor_1"
+        android:focusable="true"
+        android:onClick="doClick"
+        android:text="@string/jiangesanmiao"/>
+    <TextView
+        android:id="@+id/tv_time2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/px15"
+        android:gravity="center"
+        android:background="@drawable/button_pp_time"
+        android:textColor="@color/textcolor_1"
+        android:focusable="true"
+        android:onClick="doClick"
+        android:text="@string/jiangewumiao"/>
+    <TextView
+        android:id="@+id/tv_time3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/px15"
+        android:gravity="center"
+        android:background="@drawable/button_pp_time"
+        android:textColor="@color/textcolor_1"
+        android:focusable="true"
+        android:onClick="doClick"
+        android:text="@string/jiangeshimiao"/>
+</LinearLayout>
+</layout>

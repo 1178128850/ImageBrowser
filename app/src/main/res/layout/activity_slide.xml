@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+       <!-- <import type="java.util.List"/>
+        <import type="obe.killua.imagebrowser.bean.BaseRecyclerBean"/>
+        <variable
+            name="datas"
+            type="List&lt;BaseRecyclerBean&gt;"/>-->
+        <variable
+            name="imageBean"
+            type="obe.killua.imagebrowser.bean.ImageBean"/>
+        <variable
+            name="postion"
+            type="int"/>
+        <variable
+            name="size"
+            type="int"/>
+    </data>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="obe.killua.imagebrowser.MainActivity">
+
+    <ImageView
+        android:id="@+id/iv_images"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:showImg_Slide="@{imageBean.file}"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/px50"
+        android:padding="5dp"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/white"
+        android:textColor="@android:color/background_dark"
+        android:text='@{postion+"/"+size}'/>
+
+    <LinearLayout
+        android:id="@+id/layout_menu"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/px80"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/px15"
+        android:padding="@dimen/px10"
+        android:background="@drawable/menu_bk"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/bt_time"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:background="@drawable/button_time"
+            android:focusable="true"
+            android:onClick="doClick"/>
+        <ImageView
+            android:id="@+id/bt_type"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/px80"
+            android:background="@drawable/button_type"
+            android:focusable="true"
+            android:onClick="doClick"/>
+    </LinearLayout>
+</RelativeLayout>
+</layout>
