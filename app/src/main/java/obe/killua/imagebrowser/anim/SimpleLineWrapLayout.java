@@ -1,4 +1,4 @@
-package com.wangpm.enteranimation;
+package obe.killua.imagebrowser.anim;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -1,10 +1,7 @@
-package anim;
+package obe.killua.imagebrowser.anim;
 
 import android.graphics.Canvas;
 import android.graphics.Region;
-import android.view.View;
-
-import com.wangpm.enteranimation.EnterAnimLayout;
 
 /**
  * Created by wpm on 2017/3/30.

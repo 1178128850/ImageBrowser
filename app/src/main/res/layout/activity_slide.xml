@@ -23,11 +23,15 @@
     android:layout_height="match_parent"
     tools:context="obe.killua.imagebrowser.MainActivity">
 
-    <ImageView
-        android:id="@+id/iv_images"
+    <obe.killua.imagebrowser.anim.EnterAnimLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:showImg_Slide="@{imageBean.file}"/>
+        app:showImg_Slide="@{imageBean.file}">
+        <ImageView
+            android:id="@+id/iv_images"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </obe.killua.imagebrowser.anim.EnterAnimLayout>
 
     <TextView
         android:layout_width="wrap_content"

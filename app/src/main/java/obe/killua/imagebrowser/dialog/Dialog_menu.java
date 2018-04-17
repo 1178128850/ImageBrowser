@@ -3,28 +3,20 @@ package obe.killua.imagebrowser.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.XmlResourceParser;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatDialog;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
-import android.view.animation.TranslateAnimation;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import obe.killua.imagebrowser.R;
@@ -39,6 +31,27 @@ public class Dialog_menu extends Dialog implements View.OnFocusChangeListener{
 
     private ViewDataBinding inflate;
     private boolean isExitAnimationing = false;
+    private MyDismissListener myDismissListener;
+    private static final int DOESDISPATCH = 1;
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case DOESDISPATCH:
+                    doesDismiss();
+                    break;
+            }
+        }
+    };
+
+    public interface MyDismissListener{
+        public void dismiss();
+    }
+
+    public void setMyDismissListener(MyDismissListener myDismissListener) {
+        this.myDismissListener = myDismissListener;
+    }
 
     public Dialog_menu(@NonNull Context context) {
         super(context);
@@ -67,7 +80,7 @@ public class Dialog_menu extends Dialog implements View.OnFocusChangeListener{
         inflate.getRoot().findViewById(R.id.tv_time1).setOnFocusChangeListener(this);
         inflate.getRoot().findViewById(R.id.tv_time2).setOnFocusChangeListener(this);
         inflate.getRoot().findViewById(R.id.tv_time3).setOnFocusChangeListener(this);
-        switch (PreferencesService.GetInt(context,"SCROLLTIME",3*1000)){
+        switch (PreferencesService.GetInt(context,PreferencesService.SCROLL_TIME,3*1000)){
             case 3*1000:
                 inflate.getRoot().findViewById(R.id.tv_time1).requestFocus();
                 break;
@@ -87,7 +100,7 @@ public class Dialog_menu extends Dialog implements View.OnFocusChangeListener{
         inflate.getRoot().findViewById(R.id.tv_type1).setOnFocusChangeListener(this);
         inflate.getRoot().findViewById(R.id.tv_type2).setOnFocusChangeListener(this);
         inflate.getRoot().findViewById(R.id.tv_type3).setOnFocusChangeListener(this);
-        switch (PreferencesService.GetInt(context,"SCROLLTYPE",3*1000)){
+        switch (PreferencesService.GetInt(context,PreferencesService.SCROLL_TYPE,PreferencesService.CYCLEPLAY)){
             case PreferencesService.LISTPLAY:
                 inflate.getRoot().findViewById(R.id.tv_type1).requestFocus();
                 break;
@@ -96,6 +109,26 @@ public class Dialog_menu extends Dialog implements View.OnFocusChangeListener{
                 break;
             case PreferencesService.RANDOMPLAY:
                 inflate.getRoot().findViewById(R.id.tv_type3).requestFocus();
+                break;
+        }
+    }
+
+    public void initPP_anim(Context context){
+        inflate = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.pp_layout_anim, null, false);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        this.setContentView(inflate.getRoot(),layoutParams);
+        inflate.getRoot().findViewById(R.id.tv_anim1).setOnFocusChangeListener(this);
+        inflate.getRoot().findViewById(R.id.tv_anim2).setOnFocusChangeListener(this);
+        inflate.getRoot().findViewById(R.id.tv_anim3).setOnFocusChangeListener(this);
+        switch (PreferencesService.GetInt(context,PreferencesService.SCROLL_ANIM,PreferencesService.ANIME_ONE)){
+            case PreferencesService.ANIME_ONE:
+                inflate.getRoot().findViewById(R.id.tv_anim1).requestFocus();
+                break;
+            case PreferencesService.ANIME_TWO:
+                inflate.getRoot().findViewById(R.id.tv_anim2).requestFocus();
+                break;
+            case PreferencesService.ANIME_THREE:
+                inflate.getRoot().findViewById(R.id.tv_anim3).requestFocus();
                 break;
         }
     }
@@ -111,6 +144,8 @@ public class Dialog_menu extends Dialog implements View.OnFocusChangeListener{
 
     @Override
     public boolean dispatchKeyEvent(@NonNull KeyEvent event) {
+        handler.removeMessages(DOESDISPATCH);
+        handler.sendEmptyMessageDelayed(DOESDISPATCH,5*1000);
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             switch (event.getKeyCode()) {
                 case KeyEvent.KEYCODE_MENU:
@@ -125,6 +160,7 @@ public class Dialog_menu extends Dialog implements View.OnFocusChangeListener{
     @Override
     public void show() {
         if(!isShowing()){
+            handler.sendEmptyMessageDelayed(DOESDISPATCH,5*1000);
             super.show();
            /* Animation animation = AnimationUtils.loadAnimation(inflate.getRoot().getContext(), R.anim.translate_in);
             inflate.getRoot().startAnimation(animation);*/
@@ -140,6 +176,14 @@ public class Dialog_menu extends Dialog implements View.OnFocusChangeListener{
         inflate.getRoot().setX(x - inflate.getRoot().getMeasuredWidth()/2);
         inflate.getRoot().setY(y - inflate.getRoot().getMeasuredHeight());
         show();
+    }
+
+
+    public void doesDismiss(){
+        if(myDismissListener != null){
+            myDismissListener.dismiss();
+        }
+        super.dismiss();
     }
 
     @Override

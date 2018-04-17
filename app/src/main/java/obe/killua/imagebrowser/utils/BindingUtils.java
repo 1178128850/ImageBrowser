@@ -21,6 +21,11 @@ import java.util.List;
 
 import obe.killua.imagebrowser.R;
 import obe.killua.imagebrowser.adapter.MyRecyclerAdapter;
+import obe.killua.imagebrowser.anim.Anim;
+import obe.killua.imagebrowser.anim.AnimBaiYeChuang;
+import obe.killua.imagebrowser.anim.AnimShanXingZhanKai;
+import obe.killua.imagebrowser.anim.AnimXiangNeiRongJie;
+import obe.killua.imagebrowser.anim.EnterAnimLayout;
 import obe.killua.imagebrowser.bean.BaseRecyclerBean;
 
 
@@ -36,13 +41,27 @@ public class BindingUtils {
     }
 
     @BindingAdapter({"showImg_Slide"})
-    public static void showImg_Slide(ImageView iv, File file){
+    public static void showImg_Slide(EnterAnimLayout v, File file){
+        ImageView iv = (ImageView) v.getChildAt(0);
         Glide.with(iv.getContext()).load(file).diskCacheStrategy(DiskCacheStrategy.SOURCE)/*.animate(R.anim.scal_showimage)*/.into(new GlideDrawableImageViewTarget(iv){
             @Override
             public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
                 super.onResourceReady(resource, animation);
-                Animation animation1 = AnimationUtils.loadAnimation(iv.getContext(),R.anim.scal_showimage);
-                iv.startAnimation(animation1);
+                int i = PreferencesService.GetInt(v.getContext(), PreferencesService.SCROLL_ANIM, PreferencesService.ANIME_ONE);
+                switch (i){
+                    case PreferencesService.ANIME_ONE:
+                        new AnimBaiYeChuang(v).startAnimation();
+                        break;
+                    case PreferencesService.ANIME_TWO:
+                        new AnimShanXingZhanKai(v).startAnimation();
+                        break;
+                    case PreferencesService.ANIME_THREE:
+                        new AnimXiangNeiRongJie(v).startAnimation();
+                        break;
+
+                }
+                /*Animation animation1 = AnimationUtils.loadAnimation(iv.getContext(),R.anim.scal_showimage);
+                iv.startAnimation(animation1);*/
             }
         });
     }

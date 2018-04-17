@@ -1,4 +1,4 @@
-package com.wangpm.enteranimation;
+package obe.killua.imagebrowser.anim;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,9 +7,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
-import com.wangpm.enteranimation.R;
+import obe.killua.imagebrowser.R;
 
-import anim.Anim;
 
 /**
  * Created by wpm on 2017/4/1.

@@ -25,16 +25,18 @@ import obe.killua.imagebrowser.adapter.MyRecyclerAdapter;
 import obe.killua.imagebrowser.bean.BaseRecyclerBean;
 import obe.killua.imagebrowser.bean.ImageBean;
 import obe.killua.imagebrowser.databinding.ActivityMainBinding;
+import obe.killua.imagebrowser.dialog.Dialog_delete;
 import obe.killua.imagebrowser.dialog.Dialog_menu;
 import obe.killua.imagebrowser.utils.ImageUtils;
 
-public class MainActivity extends BaseActivity /*implements MyRecyclerAdapter.OnitemListener*/ {
+public class MainActivity extends BaseActivity{
 
     private String[] types = {"PNG","GIF", "JPG" ,"JPEG" ,"BMP" ,"WBMP" ,"WEBP"};
     private ActivityMainBinding viewDataBinding;
     private MyRecyclerAdapter myRecyclerAdapter;
     private List<BaseRecyclerBean> baseRecyclerBeans = new ArrayList<>();;
     private Dialog_menu dialog_menu;
+    private Dialog_delete dialog_delete;
     private int selectedPosition = 0;
 
     @Override
@@ -47,6 +49,8 @@ public class MainActivity extends BaseActivity /*implements MyRecyclerAdapter.On
         viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         dialog_menu = new Dialog_menu(this, R.style.Dialog);
         dialog_menu.initView(this);
+        dialog_delete = new Dialog_delete(this, R.style.Dialog);
+        dialog_delete.initView(this);
         initView();
         initImages();
         myRecyclerAdapter.setmDatas(baseRecyclerBeans);
@@ -166,6 +170,9 @@ public class MainActivity extends BaseActivity /*implements MyRecyclerAdapter.On
                 Toast.makeText(this,""+imageBean.toString(),Toast.LENGTH_SHORT).show();
                 break;*/
             case R.id.bt_delete:
+                dialog_delete.show();
+                break;
+            case R.id.tv_delete:
                 int i = ImageUtils.deleteFile(imageBean.getFile().getPath());
                 switch (i){
                     case ImageUtils.FILE_DELETE_TRUE:
@@ -185,6 +192,10 @@ public class MainActivity extends BaseActivity /*implements MyRecyclerAdapter.On
                         Toast.makeText(this, imageBean.getName() + "不存在！",Toast.LENGTH_SHORT).show();
                         break;
                 }
+                dialog_delete.dismiss();
+                break;
+            case R.id.tv_cancel:
+                dialog_delete.dismiss();
                 break;
         }
     }

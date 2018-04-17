@@ -4,7 +4,12 @@
     <string name="jiangesanmiao">间隔3秒</string>
     <string name="jiangewumiao">间隔5秒</string>
     <string name="jiangeshimiao">间隔10秒</string>
+
     <string name="liebiaobofang">列表播放</string>
     <string name="liebiaoxunhuan">列表循环</string>
     <string name="suijibofang">随机播放</string>
+
+
+
+
 </resources>

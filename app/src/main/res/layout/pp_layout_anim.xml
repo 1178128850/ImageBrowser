@@ -12,7 +12,7 @@
         android:paddingBottom="15px"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/tv_type1"
+            android:id="@+id/tv_anim1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/px15"
@@ -21,9 +21,9 @@
             android:textColor="@color/textcolor_1"
             android:focusable="true"
             android:onClick="doClick"
-            android:text="@string/liebiaobofang"/>
+            android:text="百叶窗效果"/>
         <TextView
-            android:id="@+id/tv_type2"
+            android:id="@+id/tv_anim2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/px15"
@@ -32,9 +32,9 @@
             android:textColor="@color/textcolor_1"
             android:focusable="true"
             android:onClick="doClick"
-            android:text="@string/liebiaoxunhuan"/>
+            android:text="扇形展开"/>
         <TextView
-            android:id="@+id/tv_type3"
+            android:id="@+id/tv_anim3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/px15"
@@ -43,6 +43,6 @@
             android:textColor="@color/textcolor_1"
             android:focusable="true"
             android:onClick="doClick"
-            android:text="@string/suijibofang"/>
+            android:text="向内溶解"/>
     </LinearLayout>
 </layout>

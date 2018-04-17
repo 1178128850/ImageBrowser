@@ -7,9 +7,18 @@ import android.content.SharedPreferences.Editor;
 
 public class PreferencesService {
 
+	public static final String SCROLL_TIME = "SCROLL_TIME";
+	public static final String SCROLL_TYPE = "SCROLL_TYPE";
+	public static final String SCROLL_ANIM = "SCROLL_ANIM";
+
+
 	public static final int LISTPLAY = 0;
 	public static final int CYCLEPLAY = 1;
 	public static final int RANDOMPLAY = 2;
+
+	public static final int ANIME_ONE = 0;
+	public static final int ANIME_TWO = 1;
+	public static final int ANIME_THREE = 2;
 
 	private PreferencesService(){
 
