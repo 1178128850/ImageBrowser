@@ -1,6 +1,7 @@
 package obe.killua.imagebrowser.utils;
 
 import android.databinding.BindingAdapter;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -34,6 +36,13 @@ import obe.killua.imagebrowser.bean.BaseRecyclerBean;
  */
 
 public class BindingUtils {
+
+    @BindingAdapter({"drawableLeft","w","h","p"})
+    public static void drawableLeft(TextView tv, Drawable rs, int w, int h, int padding){
+        rs.setBounds(0,0,w,h);
+        tv.setCompoundDrawablePadding(padding);
+        tv.setCompoundDrawables(rs,null,null,null);
+    }
 
     @BindingAdapter({"showImg","rotateRotationAngle"})
     public static void showImg(ImageView iv, File file,float rotateRotationAngle){

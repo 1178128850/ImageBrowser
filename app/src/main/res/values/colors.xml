@@ -6,6 +6,9 @@
 
     <color name="color_line">#737373</color>
     <color name="color_line_end">#55737373</color>
+
     <color name="textcolor_1">#999999</color>
+    <color name="textcolor_2">#B2AEAE</color>
+
     <color name="color_1">#F98101</color>
 </resources>

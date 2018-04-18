@@ -69,7 +69,9 @@ public class Dialog_menu extends Dialog implements View.OnFocusChangeListener{
 
     public void initView(Context context){
         inflate = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.menu_layout, null, false);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        getWindow().getAttributes().width = WindowManager.LayoutParams.MATCH_PARENT;
+        getWindow().getAttributes().height = WindowManager.LayoutParams.MATCH_PARENT;
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.setContentView(inflate.getRoot(),layoutParams);
     }
 

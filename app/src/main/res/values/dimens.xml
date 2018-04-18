@@ -16,4 +16,5 @@
     <dimen name="px30">30px</dimen>
     <dimen name="px320">320px</dimen>
     <dimen name="px180">180px</dimen>
+    <dimen name="px70">70px</dimen>
 </resources>

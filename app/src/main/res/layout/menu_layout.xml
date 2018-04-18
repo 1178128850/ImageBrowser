@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
     </data>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -10,39 +11,70 @@
         android:layout_height="@dimen/px80"
         android:layout_marginBottom="@dimen/px15"
         android:padding="@dimen/px10"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:background="@drawable/menu_bk"
         android:gravity="center"
         android:orientation="horizontal">
-        <ImageView
+        <TextView
             android:id="@+id/bt_startHDP"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:background="@drawable/button_picplay"
+            android:layout_marginLeft="@dimen/px70"
+            app:drawableLeft="@{@drawable/button_picplay}"
+            app:w="@{60}"
+            app:h="@{60}"
+            app:p="@{10}"
+            android:gravity="center_vertical"
+            android:textColor="@color/textcolor_2"
+            android:text="@string/huandengpian"
+            android:textSize="@dimen/px20"
             android:focusable="true"
             android:onClick="doClick"/>
-        <ImageView
+        <TextView
             android:id="@+id/bt_rotate_left"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="@dimen/px80"
-            android:background="@drawable/button_left_rotation"
+            android:layout_marginLeft="@dimen/px20"
+            app:drawableLeft="@{@drawable/button_left_rotation}"
+            app:w="@{60}"
+            app:h="@{60}"
+            app:p="@{10}"
+            android:gravity="center_vertical"
+            android:textColor="@color/textcolor_2"
+            android:text="@string/zuoxuanzhuan"
+            android:textSize="@dimen/px20"
             android:focusable="true"
             android:onClick="doClick"/>
-        <ImageView
+        <TextView
             android:id="@+id/bt_rotate_right"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="@dimen/px80"
-            android:background="@drawable/button_right_rotation"
+            android:layout_marginLeft="@dimen/px20"
+            app:drawableLeft="@{@drawable/button_right_rotation}"
+            app:w="@{60}"
+            app:h="@{60}"
+            app:p="@{10}"
+            android:gravity="center_vertical"
+            android:textColor="@color/textcolor_2"
+            android:text="@string/youxuanzhuan"
+            android:textSize="@dimen/px20"
             android:focusable="true"
             android:onClick="doClick"/>
-        <ImageView
+        <TextView
             android:id="@+id/bt_delete"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="@dimen/px80"
-            android:background="@drawable/button_del"
+            android:layout_marginRight="@dimen/px70"
+            android:layout_marginLeft="@dimen/px20"
+            app:drawableLeft="@{@drawable/button_del}"
+            app:w="@{60}"
+            app:h="@{60}"
+            app:p="@{10}"
+            android:gravity="center_vertical"
+            android:textColor="@color/textcolor_2"
+            android:text="@string/shanchu"
+            android:textSize="@dimen/px20"
             android:focusable="true"
             android:onClick="doClick"/>
     </LinearLayout>

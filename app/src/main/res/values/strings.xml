@@ -8,8 +8,10 @@
     <string name="liebiaobofang">列表播放</string>
     <string name="liebiaoxunhuan">列表循环</string>
     <string name="suijibofang">随机播放</string>
-
-
+    <string name="huandengpian">幻灯片</string>
+    <string name="zuoxuanzhuan">左旋转</string>
+    <string name="youxuanzhuan">右旋转</string>
+    <string name="shanchu">删除</string>
 
 
 </resources>
