@@ -12,6 +12,7 @@
     <string name="zuoxuanzhuan">左旋转</string>
     <string name="youxuanzhuan">右旋转</string>
     <string name="shanchu">删除</string>
+    <string name="jiangeshijian">间隔时间</string>
 
 
 </resources>

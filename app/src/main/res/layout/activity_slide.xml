@@ -47,7 +47,7 @@
         android:id="@+id/layout_menu"
         android:visibility="invisible"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/px80"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/px15"
@@ -55,19 +55,33 @@
         android:background="@drawable/menu_bk"
         android:gravity="center"
         android:orientation="horizontal">
-        <ImageView
+        <TextView
             android:id="@+id/bt_time"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:background="@drawable/button_time"
+            app:drawableLeft="@{@drawable/button_time}"
+            app:w="@{60}"
+            app:h="@{60}"
+            app:p="@{10}"
+            android:gravity="center_vertical"
+            android:textColor="@color/textcolor_2"
+            android:text="@string/jiangeshijian"
+            android:textSize="@dimen/px20"
             android:focusable="true"
             android:onClick="doClick"/>
-        <ImageView
+        <TextView
             android:id="@+id/bt_type"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="@dimen/px80"
-            android:background="@drawable/button_type"
+            android:layout_marginLeft="@dimen/px30"
+            app:drawableLeft="@{@drawable/button_type}"
+            app:w="@{60}"
+            app:h="@{60}"
+            app:p="@{10}"
+            android:gravity="center_vertical"
+            android:textColor="@color/textcolor_2"
+            android:text="播放样式"
+            android:textSize="@dimen/px20"
             android:focusable="true"
             android:onClick="doClick"/>
     </LinearLayout>

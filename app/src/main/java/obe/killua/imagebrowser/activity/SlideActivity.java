@@ -179,11 +179,11 @@ public class SlideActivity extends BaseActivity  implements Dialog_menu.MyDismis
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        if(isShowMenu()){
-            handler.removeMessages(DOESDISPATCH);
-            handler.sendEmptyMessageDelayed(DOESDISPATCH,5*1000);
-        }
         if(event.getAction() == MotionEvent.ACTION_DOWN){
+            if(isShowMenu()){
+                handler.removeMessages(DOESDISPATCH);
+                handler.sendEmptyMessageDelayed(DOESDISPATCH,5*1000);
+            }
             switch (event.getKeyCode()){
                 case KeyEvent.KEYCODE_MENU:
                     showOrDisMenu();
