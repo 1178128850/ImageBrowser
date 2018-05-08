@@ -113,10 +113,6 @@ public class SlideActivity extends BaseActivity  implements Dialog_menu.MyDismis
 
     @Override
     public void finish() {
-        if(thread != null){
-            thread.stop();
-            thread.destroy();
-        }
         super.finish();
     }
 
@@ -131,11 +127,19 @@ public class SlideActivity extends BaseActivity  implements Dialog_menu.MyDismis
                 dialog_menu.show((int)(viewDataBinding.layoutMenu.getX() + view.getX()+view.getWidth()/2),
                         (int)viewDataBinding.layoutMenu.getY());
                 break;
-            case R.id.bt_type:
+            case R.id.bt_anim:
                 handler.removeMessages(DOESDISPATCH);
                 dialog_menu = new Dialog_menu(this, R.style.Dialog);
                 dialog_menu.setMyDismissListener(this);
                 dialog_menu.initPP_anim(this);
+                dialog_menu.show((int)(viewDataBinding.layoutMenu.getX() + view.getX()+view.getWidth()/2),
+                        (int)viewDataBinding.layoutMenu.getY());
+                break;
+            case R.id.bt_type:
+                handler.removeMessages(DOESDISPATCH);
+                dialog_menu = new Dialog_menu(this, R.style.Dialog);
+                dialog_menu.setMyDismissListener(this);
+                dialog_menu.initPP_type(this);
                 dialog_menu.show((int)(viewDataBinding.layoutMenu.getX() + view.getX()+view.getWidth()/2),
                         (int)viewDataBinding.layoutMenu.getY());
                 break;
@@ -226,6 +230,7 @@ public class SlideActivity extends BaseActivity  implements Dialog_menu.MyDismis
         if(isShowMenu()){
             viewDataBinding.layoutMenu.setVisibility(View.INVISIBLE);
         }else{
+            handler.removeMessages(DOESDISPATCH);
             handler.sendEmptyMessageDelayed(DOESDISPATCH,5*1000);
             viewDataBinding.layoutMenu.setVisibility(View.VISIBLE);
         }

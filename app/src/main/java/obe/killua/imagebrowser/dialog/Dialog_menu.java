@@ -162,6 +162,7 @@ public class Dialog_menu extends Dialog implements View.OnFocusChangeListener{
     @Override
     public void show() {
         if(!isShowing()){
+            handler.removeMessages(DOESDISPATCH);
             handler.sendEmptyMessageDelayed(DOESDISPATCH,5*1000);
             super.show();
            /* Animation animation = AnimationUtils.loadAnimation(inflate.getRoot().getContext(), R.anim.translate_in);
@@ -182,10 +183,10 @@ public class Dialog_menu extends Dialog implements View.OnFocusChangeListener{
 
 
     public void doesDismiss(){
-        if(myDismissListener != null){
+        if(myDismissListener != null && isShowing()){
             myDismissListener.dismiss();
         }
-        super.dismiss();
+        Mydismiss();
     }
 
     @Override
