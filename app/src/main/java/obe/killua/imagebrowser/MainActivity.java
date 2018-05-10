@@ -18,6 +18,8 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import obe.killua.imagebrowser.activity.SlideActivity;
@@ -27,11 +29,13 @@ import obe.killua.imagebrowser.bean.ImageBean;
 import obe.killua.imagebrowser.databinding.ActivityMainBinding;
 import obe.killua.imagebrowser.dialog.Dialog_delete;
 import obe.killua.imagebrowser.dialog.Dialog_menu;
+import obe.killua.imagebrowser.filehelper.FileComparator;
+import obe.killua.imagebrowser.filehelper.FilenameExtFilter;
 import obe.killua.imagebrowser.utils.ImageUtils;
 
 public class MainActivity extends BaseActivity{
 
-    private String[] types = {"PNG","GIF", "JPG" ,"JPEG" ,"BMP" ,"WBMP" ,"WEBP"};
+    private String[] types = {"png","gif", "jpg" ,"jpeg" ,"bmp" ,"wbmp" ,"webp"};
     private ActivityMainBinding viewDataBinding;
     private MyRecyclerAdapter myRecyclerAdapter;
     private List<BaseRecyclerBean> baseRecyclerBeans = new ArrayList<>();;
@@ -79,11 +83,11 @@ public class MainActivity extends BaseActivity{
         try{
             Uri uri = getIntent().getData();
             File file = new File(uri.getPath());
-            ImageBean imageBean = new ImageBean();
+           /* ImageBean imageBean = new ImageBean();
             imageBean.setFile(file);
             imageBean.setName(file.getName());
             imageBean.setSize(ImageUtils.getFileSize(file));
-            baseRecyclerBeans.add(imageBean);
+            baseRecyclerBeans.add(imageBean);*/
             search(file);
         }catch (NullPointerException e){
             e.printStackTrace();
@@ -98,9 +102,9 @@ public class MainActivity extends BaseActivity{
     private void search(File fileold) throws Exception {
         File[] files;
         if(!fileold.isDirectory()){
-            files = new File(fileold.getParent()).listFiles();
+            files = new File(fileold.getParent()).listFiles(new FilenameExtFilter(types));
         }else{
-            files=fileold.listFiles();
+            files=fileold.listFiles(new FilenameExtFilter(types));
         }
         if(files.length>0)
         {
@@ -108,19 +112,24 @@ public class MainActivity extends BaseActivity{
             {
                 if(!files[j].isDirectory())
                 {
-                    String end = files[j].getName().substring(files[j].getName().lastIndexOf(".") + 1, files[j].getName().length()).toLowerCase();
+                    /*String end = files[j].getName().substring(files[j].getName().lastIndexOf(".") + 1, files[j].getName().length()).toLowerCase();
                     end = end.toUpperCase();
                     if(Arrays.asList(types).contains(end) && !files[j].equals(fileold))
-                    {
+                    {*/
+                        if(fileold.equals(files[j])){
+                            selectedPosition = j;
+                        }
                         ImageBean imageBean = new ImageBean();
                         imageBean.setFile(files[j]);
                         imageBean.setName(files[j].getName());
                         imageBean.setSize(ImageUtils.getFileSize(files[j]));
                         baseRecyclerBeans.add(imageBean);
-                    }
+                    /*}*/
                 }
             }
         }
+        Comparator fileComparator = new FileComparator();
+        Collections.sort(baseRecyclerBeans, fileComparator);
     }
 
     @Override
@@ -163,6 +172,7 @@ public class MainActivity extends BaseActivity{
                 onSaveInstanceState(bundle);
                 Intent intent = new Intent(this, SlideActivity.class);
                 intent.putExtra("datas", (Serializable) myRecyclerAdapter.getmDatas());
+                intent.putExtra("selectedPosition",selectedPosition);
                 startActivity(intent);
                 dialog_menu.dismiss();
                 break;
@@ -204,6 +214,7 @@ public class MainActivity extends BaseActivity{
         viewDataBinding.setSize(myRecyclerAdapter.getmDatas().size());
         viewDataBinding.setPostion(selectedPosition+1);
         myRecyclerAdapter.notifyDataSetChanged();
+        viewDataBinding.rvImages.scrollToPosition(selectedPosition);
     }
 
     /*@Override
