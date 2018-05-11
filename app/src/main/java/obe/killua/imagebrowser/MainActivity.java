@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -17,7 +15,6 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -116,9 +113,6 @@ public class MainActivity extends BaseActivity{
                     end = end.toUpperCase();
                     if(Arrays.asList(types).contains(end) && !files[j].equals(fileold))
                     {*/
-                        if(fileold.equals(files[j])){
-                            selectedPosition = j;
-                        }
                         ImageBean imageBean = new ImageBean();
                         imageBean.setFile(files[j]);
                         imageBean.setName(files[j].getName());
@@ -130,6 +124,12 @@ public class MainActivity extends BaseActivity{
         }
         Comparator fileComparator = new FileComparator();
         Collections.sort(baseRecyclerBeans, fileComparator);
+        for (int i = 0;i<baseRecyclerBeans.size();i++){
+            ImageBean imageBean = (ImageBean) baseRecyclerBeans.get(i);
+            if(imageBean.getFile().equals(fileold)){
+                selectedPosition = i;
+            }
+        }
     }
 
     @Override
