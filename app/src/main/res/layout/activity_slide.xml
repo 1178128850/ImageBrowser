@@ -21,7 +21,8 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="obe.killua.imagebrowser.MainActivity">
+    tools:context="obe.killua.imagebrowser.MainActivity"
+    android:background="@android:color/black">
 
     <obe.killua.imagebrowser.anim.EnterAnimLayout
         android:layout_width="match_parent"
@@ -34,12 +35,16 @@
     </obe.killua.imagebrowser.anim.EnterAnimLayout>
 
     <TextView
-        android:layout_width="@dimen/px80"
-        android:layout_height="@dimen/px80"
-        android:layout_margin="@dimen/px50"
-        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/px20"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
         android:focusable="false"
         android:gravity="center"
+        android:visibility="invisible"
         android:layout_alignParentRight="true"
         android:background="@drawable/shape_navigation"
         android:textColor="@android:color/white"

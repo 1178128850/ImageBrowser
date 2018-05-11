@@ -46,13 +46,13 @@ public class BindingUtils {
 
     @BindingAdapter({"showImg","rotateRotationAngle"})
     public static void showImg(ImageView iv, File file,float rotateRotationAngle){
-        Glide.with(iv.getContext()).load(file).diskCacheStrategy(DiskCacheStrategy.SOURCE).bitmapTransform(new RotateTransformation(iv.getContext(),rotateRotationAngle)).into(iv);
+        Glide.with(iv.getContext()).load(file).diskCacheStrategy(DiskCacheStrategy.NONE).bitmapTransform(new RotateTransformation(iv.getContext(),rotateRotationAngle)).into(iv);
     }
 
     @BindingAdapter({"showImg_Slide"})
     public static void showImg_Slide(EnterAnimLayout v, File file){
         ImageView iv = (ImageView) v.getChildAt(0);
-        Glide.with(iv.getContext()).load(file).diskCacheStrategy(DiskCacheStrategy.SOURCE)/*.animate(R.anim.scal_showimage)*/.into(new GlideDrawableImageViewTarget(iv){
+        Glide.with(iv.getContext()).load(file).diskCacheStrategy(DiskCacheStrategy.NONE)/*.animate(R.anim.scal_showimage)*/.into(new GlideDrawableImageViewTarget(iv){
             @Override
             public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
                 super.onResourceReady(resource, animation);
@@ -67,7 +67,6 @@ public class BindingUtils {
                     case PreferencesService.ANIME_THREE:
                         new AnimXiangNeiRongJie(v).startAnimation();
                         break;
-
                 }
                 /*Animation animation1 = AnimationUtils.loadAnimation(iv.getContext(),R.anim.scal_showimage);
                 iv.startAnimation(animation1);*/
