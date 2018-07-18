@@ -44,7 +44,7 @@
         android:paddingLeft="10dp"
         android:focusable="false"
         android:gravity="center"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_alignParentRight="true"
         android:background="@drawable/shape_navigation"
         android:textColor="@android:color/white"

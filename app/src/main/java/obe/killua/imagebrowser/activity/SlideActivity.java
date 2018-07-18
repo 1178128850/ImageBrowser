@@ -46,6 +46,7 @@ public class SlideActivity extends BaseActivity  implements Dialog_menu.MyDismis
     private ActivitySlideBinding viewDataBinding;
     private Dialog_menu dialog_menu;
     private List<BaseRecyclerBean> baseRecyclerBeans = new ArrayList<>();
+    private boolean isWhile = true;
     private Thread thread = null;
     private int selectedPosition = 0;
 
@@ -68,6 +69,12 @@ public class SlideActivity extends BaseActivity  implements Dialog_menu.MyDismis
         viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_slide);
         initImages();
         notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isWhile = true;
         startHDP();
     }
 
@@ -79,7 +86,7 @@ public class SlideActivity extends BaseActivity  implements Dialog_menu.MyDismis
 
     private void startHDP() {
         thread = new Thread(() -> {
-            while (true) {
+            while (isWhile) {
                 runOnUiThread(() -> scrollToPosition(selectedPosition));
                 try {
                     Thread.sleep(PreferencesService.GetInt(getApplicationContext(),PreferencesService.SCROLL_TIME,3*1000));
@@ -90,7 +97,7 @@ public class SlideActivity extends BaseActivity  implements Dialog_menu.MyDismis
                     case PreferencesService.LISTPLAY:
                         if (selectedPosition + 1 >= baseRecyclerBeans.size()) {//
                             runOnUiThread(() -> Toast.makeText(getApplicationContext(), "播放完毕", Toast.LENGTH_SHORT).show());
-                            finish();
+//                            finish();
                             return;
                         } else {
                             selectedPosition += 1;
@@ -110,6 +117,12 @@ public class SlideActivity extends BaseActivity  implements Dialog_menu.MyDismis
             }
         });
         thread.start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        isWhile = false;
     }
 
     @Override
