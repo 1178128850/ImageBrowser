@@ -30,6 +30,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.SlideActivity"/>
+
+        <meta-data
+            android:name="obe.killua.imagebrowser.utils.SimpleGlideModule"
+            android:value="GlideModule" />
     </application>
 
 </manifest>
