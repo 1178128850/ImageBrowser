@@ -1,27 +1,13 @@
 package obe.killua.imagebrowser.activity;
 
-import android.app.ActionBar;
 import android.databinding.DataBindingUtil;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.CompoundButton;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -30,7 +16,6 @@ import java.util.Random;
 
 import obe.killua.imagebrowser.BaseActivity;
 import obe.killua.imagebrowser.R;
-import obe.killua.imagebrowser.adapter.MyRecyclerAdapter;
 import obe.killua.imagebrowser.bean.BaseRecyclerBean;
 import obe.killua.imagebrowser.bean.ImageBean;
 import obe.killua.imagebrowser.databinding.ActivitySlideBinding;
@@ -130,7 +115,6 @@ public class SlideActivity extends BaseActivity  implements Dialog_menu.MyDismis
         super.finish();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void doClick(View view) {
         switch (view.getId()){
             case R.id.bt_time:

@@ -12,10 +12,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.io.File;
@@ -38,10 +40,6 @@ import obe.killua.imagebrowser.utils.ImageUtils;
 
 public class MainActivity extends BaseActivity{
 
-    private static final int MY_PERMISSIONS_STORAGE = 101;
-    private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private String[] types = {"png","gif", "jpg" ,"jpeg" ,"bmp" ,"wbmp" ,"webp"};
     private ActivityMainBinding viewDataBinding;
     private MyRecyclerAdapter myRecyclerAdapter;
@@ -58,13 +56,6 @@ public class MainActivity extends BaseActivity{
             Log.i(TAG, "onCreate: "+selectedPosition);
         }
         viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,
-                        PERMISSIONS_STORAGE,
-                        MY_PERMISSIONS_STORAGE);
-            }
-        }
         dialog_menu = new Dialog_menu(this, R.style.Dialog);
         dialog_menu.initView(this);
         dialog_delete = new Dialog_delete(this, R.style.Dialog);
@@ -82,7 +73,13 @@ public class MainActivity extends BaseActivity{
     }
 
     private void initView() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this){
+            @Override
+            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
+                return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT);
+            }
+        };
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         myRecyclerAdapter = new MyRecyclerAdapter(this);
         /*myRecyclerAdapter.setOnitemListener(this);*/
@@ -133,6 +130,7 @@ public class MainActivity extends BaseActivity{
                     {*/
                         ImageBean imageBean = new ImageBean();
                         imageBean.setFile(files[j]);
+                        Log.i(TAG, "search: "+files[j]);
                         imageBean.setName(files[j].getName());
                         imageBean.setSize(ImageUtils.getFileSize(files[j]));
                         baseRecyclerBeans.add(imageBean);

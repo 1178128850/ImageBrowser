@@ -1,11 +1,11 @@
 package obe.killua.imagebrowser;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 
 /**
  * Created by Administrator on 2018/3/29.
  */
 
-public class BaseActivity extends AppCompatActivity{
+public class BaseActivity extends Activity{
     protected static String TAG = "===tag";
 }

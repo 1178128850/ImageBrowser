@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ImageBrowser</string>
+    <string name="app_name">图片浏览器</string>
     <string name="action_settings">Settings</string>
     <string name="jiangesanmiao">间隔3秒</string>
     <string name="jiangewumiao">间隔5秒</string>

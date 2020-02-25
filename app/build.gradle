@@ -1,11 +1,37 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    signingConfigs {
+        HiV560 {
+            keyAlias 'obe'
+            keyPassword 'obe2017'
+            storeFile file('E:/Android/HiV560.keystore')
+            storePassword 'obe2017'
+        }
+        T968_X7M {
+            keyAlias 'obe'
+            keyPassword 'obe2017'
+            storeFile file('E:/Android/t968_X7M.keystore')
+            storePassword 'obe2017'
+        }
+        T962x {
+            keyAlias 'obe'
+            keyPassword 'obe2017'
+            storeFile file('E:/Android/t962x.keystore')
+            storePassword 'obe2017'
+        }
+        T968 {
+            keyAlias 'obe'
+            keyPassword 'obe2017'
+            storeFile file('E:/Android/t972.keystore')
+            storePassword 'obe2017'
+        }
+    }
+    compileSdkVersion 21
     defaultConfig {
         applicationId "obe.killua.imagebrowser"
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -18,29 +44,52 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        HiV560_Release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.HiV560
+        }
+        T968_X7M_Release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.T968_X7M
+        }
+        T968_Release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.T968
+        }
+        T962x_Release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.T962x
+        }
     }
-
     dataBinding {
         enabled true;
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    applicationVariants.all { varian ->
+        varian.outputs.all {
+            def fileName;
+
+            fileName = "ImageBrowser_${varian.buildType.name}.apk"
+            outputFileName = fileName;
+        }
     }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.android.support:design:26.1.0'
-
+    implementation 'com.android.support:appcompat-v7:21.0.3'
+    implementation 'com.android.support:recyclerview-v7:21.0.3'
     //    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
 }
