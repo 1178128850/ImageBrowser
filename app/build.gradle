@@ -1,6 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "obe.killua.imagebrowser"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
     signingConfigs {
         HiV560 {
             keyAlias 'obe'
@@ -27,19 +37,19 @@ android {
             storePassword 'obe2017'
         }
     }
-    compileSdkVersion 21
-    defaultConfig {
-        applicationId "obe.killua.imagebrowser"
-        minSdkVersion 15
-        targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        //分包问题
-        multiDexEnabled true
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
+
     buildTypes {
+        debug{
+            minifyEnabled false
+            signingConfig signingConfigs.T968_X7M
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -85,11 +95,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:21.0.3'
-    implementation 'com.android.support:recyclerview-v7:21.0.3'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     //    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha01'
 }

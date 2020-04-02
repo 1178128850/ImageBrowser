@@ -1,5 +1,6 @@
 package obe.killua.imagebrowser.utils;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
@@ -22,6 +23,7 @@ public class ImageUtils {
      */
     public static int deleteFile(String fileName) {
         File file = new File(fileName);
+        Log.i("===wt", "deleteFile: ");
         // 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
         if (file.exists() && file.isFile()) {
             if (file.delete()) {

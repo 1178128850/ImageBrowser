@@ -2,16 +2,17 @@ package obe.killua.imagebrowser.view;
 
 import android.content.Context;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Administrator on 2018/4/9.
  */
 
-public class MyRecyclerView extends RecyclerView{
+public class MyRecyclerView extends RecyclerView {
 
     public MyRecyclerView(Context context) {
         super(context);

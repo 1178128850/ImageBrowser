@@ -1,6 +1,8 @@
 package obe.killua.imagebrowser.bean;
 
-import android.databinding.Bindable;
+
+
+import androidx.databinding.Bindable;
 
 import java.io.File;
 

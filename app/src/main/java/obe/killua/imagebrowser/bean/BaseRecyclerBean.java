@@ -1,6 +1,7 @@
 package obe.killua.imagebrowser.bean;
 
-import android.databinding.BaseObservable;
+
+import androidx.databinding.BaseObservable;
 
 import java.io.Serializable;
 

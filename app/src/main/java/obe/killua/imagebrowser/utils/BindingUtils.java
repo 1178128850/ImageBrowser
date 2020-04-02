@@ -1,16 +1,10 @@
 package obe.killua.imagebrowser.utils;
 
-import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -19,16 +13,10 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 import java.io.File;
-import java.util.List;
-
-import obe.killua.imagebrowser.R;
-import obe.killua.imagebrowser.adapter.MyRecyclerAdapter;
-import obe.killua.imagebrowser.anim.Anim;
 import obe.killua.imagebrowser.anim.AnimBaiYeChuang;
 import obe.killua.imagebrowser.anim.AnimShanXingZhanKai;
 import obe.killua.imagebrowser.anim.AnimXiangNeiRongJie;
 import obe.killua.imagebrowser.anim.EnterAnimLayout;
-import obe.killua.imagebrowser.bean.BaseRecyclerBean;
 
 
 /**
