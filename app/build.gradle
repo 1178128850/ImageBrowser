@@ -12,28 +12,22 @@ android {
     }
 
     signingConfigs {
+        Ali {
+            keyAlias 'obe'
+            keyPassword 'obe2017'
+            storeFile file('E:/Android/ali_t972.keystore')
+            storePassword 'obe2017'
+        }
+        OBE {
+            keyAlias 'obe'
+            keyPassword 'obe2017'
+            storeFile file('E:/Android/obeplatform.keystore')
+            storePassword 'obe2017'
+        }
         HiV560 {
             keyAlias 'obe'
             keyPassword 'obe2017'
             storeFile file('E:/Android/HiV560.keystore')
-            storePassword 'obe2017'
-        }
-        T968_X7M {
-            keyAlias 'obe'
-            keyPassword 'obe2017'
-            storeFile file('E:/Android/t968_X7M.keystore')
-            storePassword 'obe2017'
-        }
-        T962x {
-            keyAlias 'obe'
-            keyPassword 'obe2017'
-            storeFile file('E:/Android/t962x.keystore')
-            storePassword 'obe2017'
-        }
-        T968 {
-            keyAlias 'obe'
-            keyPassword 'obe2017'
-            storeFile file('E:/Android/t972.keystore')
             storePassword 'obe2017'
         }
     }
@@ -46,33 +40,32 @@ android {
     }
 
     buildTypes {
-        debug{
-            minifyEnabled false
-            signingConfig signingConfigs.T968_X7M
+        debug {
+            signingConfig signingConfigs.Ali
         }
+
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
-        HiV560_Release {
+
+        Ali {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.Ali
+        }
+        OBE {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.OBE
+        }
+        HiV560 {
+            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.HiV560
-        }
-        T968_X7M_Release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.T968_X7M
-        }
-        T968_Release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.T968
-        }
-        T962x_Release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.T962x
         }
     }
     dataBinding {
