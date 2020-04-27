@@ -67,6 +67,8 @@ public class SlideActivity extends BaseActivity  implements Dialog_menu.MyDismis
         //noinspection unchecked
         baseRecyclerBeans = (List<BaseRecyclerBean>) getIntent().getSerializableExtra("datas");
         selectedPosition = getIntent().getIntExtra("selectedPosition",0);
+        String imgPath = getIntent().getStringExtra("imgPath");
+        setImgPath(imgPath);
     }
 
     private void startHDP() {

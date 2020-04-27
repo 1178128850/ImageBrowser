@@ -89,6 +89,7 @@ public class MainActivity extends BaseActivity{
     private void initImages() {
         try{
             Uri uri = getIntent().getData();
+            setImgPath(uri.getPath());
             File file = new File(uri.getPath());
             Log.i(TAG, "initImages: "+ file.getPath());
            /* ImageBean imageBean = new ImageBean();
@@ -185,6 +186,7 @@ public class MainActivity extends BaseActivity{
                 Intent intent = new Intent(this, SlideActivity.class);
                 intent.putExtra("datas", (Serializable) myRecyclerAdapter.getmDatas());
                 intent.putExtra("selectedPosition",selectedPosition);
+                intent.putExtra("imgPath",getImgPath());
                 startActivity(intent);
                 dialog_menu.dismiss();
                 break;
